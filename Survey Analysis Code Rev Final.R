@@ -1,16 +1,21 @@
 # Assume mu = 3, so we set the null hypothesis to 3/6 
-#H0: Responses from merely guessing would be = 3/6
-#HA: Responses from nurses correctly choosing would be > 3/6
+# H0: Responses from merely guessing would be = 3/6
+# HA: Responses from nurses correctly choosing would be > 3/6
 
 #Correct answers are counted if endorsement includes 
 # any of the option numbers 2, 4, 6, 8, 9 and 10
 # In the survey, 6 out of 10 options to choose from are correct.
-# We are not penalizing for guessing.  
-# How many correct options would a nurse endorse? 
+# This scoring scheme does not penalize for guessing.  
+# Research question: How many correct options of 6 would a nurse endorse? 
+
+#*********************************************************
+#Remove the "#" comment symbol to install the following 
+# two libraries as needed:
+# install.packages('tidyverse')
+# install.packages('ggplot2')
+#*********************************************************
 
 #Run the following libraries:
-install.packages('tidyverse')
-install.packages('ggplot2')
 library(tidyverse)
 library(ggplot2)
 
@@ -33,7 +38,7 @@ ggplot(data = correctonesP, aes(x = correct.selected)) +
   geom_histogram(binwidth = 1, boundary = 0.5) +
 labs(y = 'Count', x = 'Correct Answers Selected')
 
-t.test(correctonesP, alternative = "greater", mu = 3)
+t.test(correctonesP, mu = 3)
 
 #Assess Student Nurse Responses
 mean(correctonesS$correct.selected, na.rm = TRUE)
@@ -42,4 +47,4 @@ ggplot(data = correctonesS, aes(x = correct.selected)) +
   geom_histogram(binwidth = 1, boundary  = 0.5) +
   labs(y = 'Count', x = 'Correct Answers Selected')
 
-t.test(correctonesS, alternative = "greater",mu = 3)
+t.test(correctonesS, mu = 3)
